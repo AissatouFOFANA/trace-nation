@@ -1,70 +1,114 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import { Shield, BarChart3, DollarSign, CreditCard, AlertTriangle, Users, FileText, CheckCircle, LogOut, UserCog, Upload } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { signOut, role, user } = useAuth();
+  const { toast } = useToast();
 
-  const menuItems = [
-    { name: "Accueil", path: "/" },
-    { name: "Tableau de Bord", path: "/dashboard" },
-    { name: "Budget", path: "/budget" },
-    { name: "Paiements", path: "/payments" },
-    { name: "Détection de Fraude", path: "/fraud-detection" },
-    { name: "Portail Citoyen", path: "/citizen-portal" },
-    { name: "Rapports", path: "/reports" },
-    { name: "Audit", path: "/audit" },
+  const handleLogout = async () => {
+    await signOut();
+    toast({
+      title: "Déconnexion réussie",
+      description: "À bientôt sur la plateforme NDT",
+    });
+    navigate('/');
+  };
+
+  const navLinks = [
+    { name: "Dashboard", path: "/dashboard", icon: BarChart3 },
+    { name: "Budget", path: "/budget", icon: DollarSign },
+    { name: "Paiements", path: "/payments", icon: CreditCard },
+    { name: "Fraude", path: "/fraud-detection", icon: AlertTriangle },
+    { name: "Portail Citoyen", path: "/citizen-portal", icon: Users },
+    { name: "Rapports", path: "/reports", icon: FileText },
+    { name: "Audit", path: "/audit", icon: CheckCircle },
+  ];
+
+  const adminLinks = [
+    { name: "Gestion Utilisateurs", path: "/user-management", icon: UserCog },
+  ];
+
+  const administrationLinks = [
+    { name: "Saisie Données", path: "/data-entry", icon: Upload },
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">NT</span>
-            </div>
-            <span className="font-display font-bold text-xl">Transparence Sénégal</span>
-          </Link>
-
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {menuItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <Button variant="ghost" className="text-sm">
-                  {item.name}
-                </Button>
+    <header className="border-b bg-card sticky top-0 z-50 backdrop-blur-sm bg-background/95">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <Shield className="h-6 w-6 text-primary" />
+          <span className="font-display font-bold text-xl">NDT Platform</span>
+        </Link>
+        
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                  location.pathname === item.path
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {item.name}
               </Link>
-            ))}
-            <Button className="ml-4">Connexion</Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden py-4 space-y-2 animate-fade-in">
-            {menuItems.map((item) => (
-              <Link key={item.path} to={item.path} onClick={() => setIsOpen(false)}>
-                <Button variant="ghost" className="w-full justify-start">
-                  {item.name}
-                </Button>
+            );
+          })}
+          
+          {role === 'admin' && adminLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                  location.pathname === item.path
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {item.name}
               </Link>
-            ))}
-            <Button className="w-full mt-4">Connexion</Button>
-          </div>
+            );
+          })}
+          
+          {(role === 'administration' || role === 'admin') && administrationLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                  location.pathname === item.path
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+        
+        {user && (
+          <Button onClick={handleLogout} variant="outline" size="sm" className="gap-2">
+            <LogOut className="h-4 w-4" />
+            Déconnexion
+          </Button>
         )}
       </div>
-    </nav>
+    </header>
   );
 };
 

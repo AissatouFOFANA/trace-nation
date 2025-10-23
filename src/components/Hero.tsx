@@ -1,5 +1,6 @@
-import { ArrowRight, Shield, Database, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight, Shield, Database, Eye } from "lucide-react";
 import heroImage from "@/assets/hero-transparency.jpg";
 
 const Hero = () => {
@@ -74,17 +75,21 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-primary font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
+              asChild
             >
-              Découvrir la plateforme
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <Link to="/auth">
+                Accéder à la Plateforme
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
             
             <Button 
               size="lg" 
               variant="outline"
               className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold text-lg px-8 py-6 backdrop-blur-sm bg-white/5"
+              asChild
             >
-              Voir la démo
+              <Link to="/citizen-portal">Portail Citoyen</Link>
             </Button>
           </div>
         </div>

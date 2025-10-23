@@ -11,6 +11,9 @@ import FraudDetection from "./pages/FraudDetection";
 import CitizenPortal from "./pages/CitizenPortal";
 import Reports from "./pages/Reports";
 import Audit from "./pages/Audit";
+import Auth from "./pages/Auth";
+import UserManagement from "./pages/UserManagement";
+import DataEntry from "./pages/DataEntry";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/citizen-portal" element={<CitizenPortal />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/audit" element={<Audit />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/data-entry" element={<DataEntry />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
