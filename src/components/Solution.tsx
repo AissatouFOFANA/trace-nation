@@ -4,23 +4,23 @@ const Solution = () => {
   const pillars = [
     {
       icon: Layers,
-      title: "Blockchain souveraine",
-      description: "Infrastructure décentralisée garantissant l'immutabilité et la traçabilité de chaque transaction"
+      title: "Centralisation Budgétaire",
+      description: "Gestion centralisée de tous les ministères et institutions avec allocation hiérarchique complète"
     },
     {
       icon: Lock,
-      title: "Sécurité maximale",
-      description: "Cryptographie avancée et protocoles de sécurité conformes aux normes internationales"
+      title: "Validation Multi-Niveaux",
+      description: "Circuit configurable : Chef de service → Ordonnateur → Contrôleur financier → Comptable public"
     },
     {
       icon: Zap,
-      title: "Temps réel",
-      description: "Suivi instantané des flux budgétaires et alertes automatiques en cas d'anomalie"
+      title: "Détection IA de Fraude",
+      description: "Identification automatique des doublons, surfacturations, conflits d'intérêts et bénéficiaires fictifs"
     },
     {
       icon: CheckCircle2,
-      title: "Conformité totale",
-      description: "Respect du cadre réglementaire sénégalais et des standards internationaux de transparence"
+      title: "Transparence Citoyenne",
+      description: "Portail public avec consultation budgets, projets géolocalisés et signalement d'anomalies"
     }
   ];
 
@@ -34,13 +34,12 @@ const Solution = () => {
           </div>
           
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Une plateforme souveraine de{" "}
-            <span className="text-primary">traçabilité budgétaire totale</span>
+            Une Plateforme Souveraine de{" "}
+            <span className="text-primary">Traçabilité Budgétaire Totale</span>
           </h2>
           
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Un système innovant qui trace chaque franc CFA du budget national, 
-            de son allocation initiale jusqu'à son exécution finale, en temps réel.
+            Solution numérique nationale pour centraliser la gestion budgétaire, tracer chaque franc CFA dépensé, détecter automatiquement les fraudes et offrir une transparence totale aux citoyens via un portail public.
           </p>
         </div>
 

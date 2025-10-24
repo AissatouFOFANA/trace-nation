@@ -27,7 +27,7 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
             <Shield className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-white">République du Sénégal</span>
+            <span className="text-sm font-medium text-white">New Deal Technologique - République du Sénégal</span>
           </div>
           
           {/* Main heading */}
@@ -48,9 +48,9 @@ const Hero = () => {
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
               <div className="flex items-center gap-3 mb-2">
                 <Database className="w-6 h-6 text-accent" />
-                <span className="text-3xl font-bold text-white">1000Mds</span>
+                <span className="text-3xl font-bold text-white">161Mds FCFA</span>
               </div>
-              <p className="text-white/80 text-sm">Pertes estimées annuelles</p>
+              <p className="text-white/80 text-sm">Pertes annuelles dues à la fraude</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
@@ -58,15 +58,15 @@ const Hero = () => {
                 <Eye className="w-6 h-6 text-accent" />
                 <span className="text-3xl font-bold text-white">100%</span>
               </div>
-              <p className="text-white/80 text-sm">Transparence totale</p>
+              <p className="text-white/80 text-sm">Transparence totale des budgets</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
               <div className="flex items-center gap-3 mb-2">
                 <Shield className="w-6 h-6 text-accent" />
-                <span className="text-3xl font-bold text-white">Temps réel</span>
+                <span className="text-3xl font-bold text-white">Temps Réel</span>
               </div>
-              <p className="text-white/80 text-sm">Traçabilité instantanée</p>
+              <p className="text-white/80 text-sm">Traçabilité des dépenses publiques</p>
             </div>
           </div>
           

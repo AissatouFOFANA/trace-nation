@@ -5,26 +5,26 @@ const Problem = () => {
   const problems = [
     {
       icon: AlertTriangle,
-      title: "1000 Milliards FCFA perdus annuellement",
-      description: "Malversations, surfacturations et détournements qui grèvent le budget national",
+      title: "161 Milliards FCFA",
+      description: "Pertes annuelles dues à la fraude et l'évasion fiscales (PressAfrik, 2024)",
       color: "text-destructive"
     },
     {
       icon: TrendingDown,
-      title: "Crise de confiance institutionnelle",
-      description: "Les scandales à répétition érodent la légitimité de l'État et des institutions",
+      title: "3,5 Milliards FCFA",
+      description: "Fraude de sociétés pétrolières ayant collecté des taxes sans les reverser au Trésor public",
       color: "text-destructive"
     },
     {
       icon: Users,
-      title: "Impact social dramatique",
-      description: "Services publics dégradés, infrastructures manquantes, développement freiné",
+      title: "Méfiance Généralisée",
+      description: "Défiance profonde entre citoyens, institutions et partenaires internationaux (Banque mondiale, FMI, BAD)",
       color: "text-destructive"
     },
     {
       icon: FileX,
-      title: "Opacité des flux budgétaires",
-      description: "Absence de traçabilité en temps réel et de mécanismes de contrôle efficaces",
+      title: "138 Millions FCFA",
+      description: "Détournement présumé lié au Fonds Covid-19 à l'hôpital Dalal Jamm (Souleymane, 2025)",
       color: "text-destructive"
     }
   ];
@@ -39,12 +39,11 @@ const Problem = () => {
           </div>
           
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Une hémorragie financière qui mine le Sénégal
+            Une Hémorragie Financière qui Mine la <span className="text-primary">Crédibilité</span>
           </h2>
           
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Les malversations financières représentent un fléau national qui compromet 
-            le développement du pays et la confiance des citoyens envers leurs institutions.
+            Le Sénégal traverse une crise de gouvernance financière avec 161 milliards FCFA perdus annuellement à cause de la fraude et l'évasion fiscales. Cette situation compromet le développement et la crédibilité internationale du pays.
           </p>
         </div>
 

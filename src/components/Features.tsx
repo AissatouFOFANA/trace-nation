@@ -5,39 +5,39 @@ const Features = () => {
   const features = [
     {
       icon: GitBranch,
-      title: "Traçabilité complète",
-      description: "Suivi de bout en bout de chaque dépense publique, du ministère au fournisseur final",
-      benefits: ["Historique complet", "Chaîne de responsabilité", "Preuves cryptographiques"]
+      title: "Allocation Budgétaire Centralisée",
+      description: "Saisie hiérarchique du budget national vers ministères, programmes et actions",
+      benefits: ["Gestion des modifications", "Alertes dépassements", "Historique complet"]
     },
     {
       icon: Bell,
-      title: "Alertes intelligentes",
-      description: "Détection automatique des anomalies et des schémas suspects via IA",
-      benefits: ["Analyse en temps réel", "Notifications instantanées", "Prévention proactive"]
+      title: "Détection IA de Fraude",
+      description: "Identification automatique doublons, surfacturations, bénéficiaires fictifs",
+      benefits: ["Scoring de risque 0-100", "Analyse comportementale", "Alertes en temps réel"]
     },
     {
       icon: BarChart3,
-      title: "Tableaux de bord analytiques",
-      description: "Visualisation intuitive des flux budgétaires pour tous les acteurs",
-      benefits: ["Rapports personnalisés", "KPIs en temps réel", "Tendances et prévisions"]
+      title: "Tableaux de Bord Analytiques",
+      description: "Dashboards pour ministres, ordonnateurs, contrôle et citoyens",
+      benefits: ["Taux d'exécution", "Projets en cours", "Comparaisons périodes"]
     },
     {
       icon: Search,
-      title: "Audit automatisé",
-      description: "Contrôles systématiques et génération automatique de rapports d'audit",
-      benefits: ["Conformité continue", "Pistes d'audit", "Documentation automatique"]
+      title: "Paiements Automatisés Tracés",
+      description: "Intégration SenTrésor, Mobile Money et virements bancaires",
+      benefits: ["Traçabilité blockchain", "Notifications SMS", "Reçus numériques"]
     },
     {
       icon: Shield,
-      title: "Contrôle d'accès granulaire",
-      description: "Permissions multiniveaux adaptées à chaque profil utilisateur",
-      benefits: ["Rôles personnalisés", "Authentification forte", "Traçabilité des accès"]
+      title: "Validation Multi-Niveaux",
+      description: "Circuit configurable selon montants et nature des dépenses",
+      benefits: ["5 niveaux validation", "Règles automatiques", "Justifications obligatoires"]
     },
     {
       icon: FileText,
-      title: "Portail citoyen",
-      description: "Interface publique pour consulter l'utilisation des fonds publics",
-      benefits: ["Open data", "Recherche simple", "Transparence totale"]
+      title: "Portail Citoyen Public",
+      description: "Consultation budgets, projets géolocalisés, signalement anomalies",
+      benefits: ["Transparence totale", "Open data", "Participation citoyenne"]
     }
   ];
 
