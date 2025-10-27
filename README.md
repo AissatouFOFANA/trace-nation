@@ -1,53 +1,82 @@
-# Welcome to your Lovable project
+# Trace Nation
 
-## Project info
+Application web moderne de gestion et de suivi, construite avec React, TypeScript et Vite.
 
-**URL**: https://lovable.dev/projects/5b213fc3-d4dd-4aab-871f-89e81ab293ce
+## 🚀 Technologies utilisées
 
-## How can I edit this code?
+- **Framework**: React 18 avec TypeScript
+- **Build Tool**: Vite
+- **UI Components**: shadcn/ui (basé sur Radix UI)
+- **Styling**: Tailwind CSS
+- **Gestion d'état**: React Query
+- **Authentification**: Supabase
+- **Validation de formulaire**: React Hook Form
+- **Icônes**: Lucide Icons
+- **Utilitaires**: date-fns, clsx, class-variance-authority
 
-There are several ways of editing your application.
+## 🛠️ Prérequis
 
-**Use Lovable**
+- Node.js 16+ et npm 8+
+- Compte Supabase (pour l'authentification et la base de données)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5b213fc3-d4dd-4aab-871f-89e81ab293ce) and start prompting.
+## 🚀 Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Cloner le dépôt**
+   ```bash
+   git clone <URL_DU_DEPOT>
+   cd trace-nation
+   ```
 
-**Use your preferred IDE**
+2. **Installer les dépendances**
+   ```bash
+   npm install
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. **Configurer les variables d'environnement**
+   Créez un fichier `.env` à la racine du projet avec les variables suivantes :
+   ```
+   VITE_SUPABASE_URL=votre_url_supabase
+   VITE_SUPABASE_ANON_KEY=votre_anon_key
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+4. **Démarrer l'application en mode développement**
+   ```bash
+   npm run dev
+   ```
+   L'application sera disponible à l'adresse : http://localhost:5173
 
-Follow these steps:
+## 📦 Commandes disponibles
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- `npm run dev` - Lance le serveur de développement
+- `npm run build` - Construit l'application pour la production
+- `npm run preview` - Prévient l'application construite localement
+- `npm run lint` - Exécute le linter
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🏗️ Structure du projet
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/    # Composants réutilisables
+├── pages/        # Pages de l'application
+├── lib/          # Utilitaires et configurations
+├── hooks/        # Hooks personnalisés
+├── contexts/     # Contextes React
+├── utils/        # Fonctions utilitaires
+└── types/        # Définitions de types TypeScript
 ```
 
-**Edit a file directly in GitHub**
+## 📝 Fonctionnalités
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Authentification utilisateur
+- Interface utilisateur moderne et réactive
+- Formulaires avec validation
+- Gestion d'état avancée avec React Query
+- Thème clair/sombre
+- Composants accessibles
 
-**Use GitHub Codespaces**
+## 📄 Licence
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
+Ce projet est sous licence MIT.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
 ## What technologies are used for this project?
