@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
-export type UserRole = 'admin' | 'administration' | 'citoyen';
+export type UserRole = 'admin' | 'superadmin' | 'citoyen';
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -26,7 +26,9 @@ export const useAuth = () => {
               .eq('user_id', session.user.id)
               .single();
             
-            setRole(data?.role as UserRole || 'citoyen');
+            // Convertir le rôle 'administration' en 'superadmin' pour l'interface utilisateur
+            const role = data?.role === 'administration' ? 'superadmin' : data?.role;
+            setRole(role as UserRole || 'citoyen');
           }, 0);
         } else {
           setRole(null);
@@ -49,7 +51,9 @@ export const useAuth = () => {
             .eq('user_id', session.user.id)
             .single();
           
-          setRole(data?.role as UserRole || 'citoyen');
+          // Convertir le rôle 'administration' en 'superadmin' pour l'interface utilisateur
+          const role = data?.role === 'administration' ? 'superadmin' : data?.role;
+          setRole(role as UserRole || 'citoyen');
           setLoading(false);
         }, 0);
       } else {
@@ -91,6 +95,39 @@ export const useAuth = () => {
     return { error };
   };
 
+  const updateUser = async ({ email, password, data }: { email?: string; password?: string; data?: any }) => {
+    if (!user) return { error: new Error('Aucun utilisateur connecté') };
+    
+    try {
+      let updateData: any = {};
+      
+      if (email) updateData.email = email;
+      if (password) updateData.password = password;
+      if (data) updateData.data = data;
+      
+      const { data: updatedUser, error } = await supabase.auth.updateUser(updateData);
+      
+      if (error) throw error;
+      
+      // Mise à jour du rôle si nécessaire
+      if (data?.role) {
+        await supabase
+          .from('user_roles')
+          .upsert(
+            { user_id: user.id, role: data.role },
+            { onConflict: 'user_id' }
+          );
+        
+        setRole(data.role);
+      }
+      
+      return { user: updatedUser, error: null };
+    } catch (error) {
+      console.error('Error updating user:', error);
+      return { user: null, error };
+    }
+  };
+
   return {
     user,
     session,
@@ -99,5 +136,6 @@ export const useAuth = () => {
     signUp,
     signIn,
     signOut,
+    updateUser,
   };
 };

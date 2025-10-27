@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth, UserRole } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -48,11 +48,14 @@ const UserManagement = () => {
     if (profiles && roles) {
       const usersWithRoles = profiles.map(profile => {
         const userRole = roles.find(r => r.user_id === profile.id);
+        // Convertir le rôle de la base de données vers le format de l'interface utilisateur
+        const uiRole = userRole?.role === 'administration' ? 'superadmin' : (userRole?.role || 'citoyen');
+        
         return {
           id: profile.id,
-          email: '',
+          email: '', // L'email n'est pas disponible dans la table profiles
           full_name: profile.full_name || 'N/A',
-          role: userRole?.role || 'citoyen',
+          role: uiRole,
           created_at: profile.created_at,
         };
       });
@@ -61,10 +64,25 @@ const UserManagement = () => {
     setLoading(false);
   };
 
-  const updateUserRole = async (userId: string, newRole: string) => {
+  const updateUserRole = async (userId: string, role: string) => {
+    // Vérifier que le rôle est valide
+    const validRoles = ['admin', 'superadmin', 'citoyen'];
+    
+    if (!validRoles.includes(role)) {
+      toast({
+        title: "Erreur",
+        description: "Rôle invalide",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Convertir le rôle pour la base de données
+    const dbRole = (role === 'superadmin' ? 'administration' : role) as 'admin' | 'citoyen' | 'administration';
+    
     const { error } = await supabase
       .from('user_roles')
-      .update({ role: newRole as 'admin' | 'administration' | 'citoyen' })
+      .update({ role: dbRole })
       .eq('user_id', userId);
 
     if (error) {
@@ -83,10 +101,22 @@ const UserManagement = () => {
   };
 
   const getRoleBadge = (role: string) => {
-    const config: Record<string, { variant: 'default' | 'secondary' | 'outline', icon: typeof Shield, label: string }> = {
-      admin: { variant: 'default', icon: Shield, label: 'Administrateur' },
-      administration: { variant: 'secondary', icon: Building2, label: 'Administration' },
-      citoyen: { variant: 'outline', icon: Users, label: 'Citoyen' },
+    const config = {
+      admin: { 
+        variant: 'default' as const, 
+        icon: Shield, 
+        label: 'Administrateur' 
+      },
+      superadmin: { 
+        variant: 'secondary' as const, 
+        icon: Building2, 
+        label: 'Super Admin' 
+      },
+      citoyen: { 
+        variant: 'outline' as const, 
+        icon: Users, 
+        label: 'Citoyen' 
+      },
     };
     const { variant, icon: Icon, label } = config[role] || config.citoyen;
     return (
@@ -142,7 +172,7 @@ const UserManagement = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="citoyen">Citoyen</SelectItem>
-                          <SelectItem value="administration">Administration</SelectItem>
+                          <SelectItem value="superadmin">SuperAdmin</SelectItem>
                           <SelectItem value="admin">Administrateur</SelectItem>
                         </SelectContent>
                       </Select>
